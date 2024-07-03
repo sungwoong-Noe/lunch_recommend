@@ -13,13 +13,24 @@ const drawer = ref(false);
 
 
 <template>
-
   <v-layout class="rounded rounded-md">
     <v-app-bar color="primary" prominent elevation="3">
-      <v-app-bar-nav-icon icon="mdi-menu" @click="drawer = !drawer" ></v-app-bar-nav-icon>
-      <v-app-bar-title>Application Bar</v-app-bar-title>
-    </v-app-bar>
 
+
+      <template v-slot:prepend>
+        <v-app-bar-nav-icon
+            icon="mdi-menu"
+            @click="drawer = !drawer"
+        ></v-app-bar-nav-icon>
+      </template>
+      <v-app-bar-title>Application Bar</v-app-bar-title>
+
+      <template v-slot:append>
+        <v-btn
+            icon="mdi-account"
+        ></v-btn>
+      </template>
+    </v-app-bar>
 
     <v-navigation-drawer
         v-model="drawer"
