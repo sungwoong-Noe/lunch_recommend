@@ -3,8 +3,7 @@
 import {useKakao} from "vue3-kakao-maps";
 import {ref} from "vue";
 
-useKakao(import.meta.env.VITE_KAKAO_APP_KEY,['services']);
-
+useKakao(import.meta.env.VITE_KAKAO_API_KEY,['services']);
 
 const drawer = ref(false);
 
@@ -43,9 +42,7 @@ const drawer = ref(false);
     </v-navigation-drawer>
 
     <v-main class="d-flex align-center justify-center" style="min-height: 300px;">
-      <v-container fluid>
-        <router-view></router-view>
-      </v-container>
+      <router-view></router-view>
     </v-main>
   </v-layout>
 
