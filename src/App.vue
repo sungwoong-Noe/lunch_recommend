@@ -12,39 +12,56 @@ const drawer = ref(false);
 
 
 <template>
-  <v-layout class="rounded rounded-md">
-    <v-app-bar color="primary" prominent elevation="3">
+<!--  <v-layout class="rounded rounded-md">-->
+<!--    <v-app-bar color="primary" prominent elevation="3">-->
 
 
-      <template v-slot:prepend>
-        <v-app-bar-nav-icon
-            icon="mdi-menu"
-            @click="drawer = !drawer"
-        ></v-app-bar-nav-icon>
-      </template>
-      <v-app-bar-title>Application Bar</v-app-bar-title>
+<!--      <template v-slot:prepend>-->
+<!--        <v-app-bar-nav-icon-->
+<!--            icon="mdi-menu"-->
+<!--            @click="drawer = !drawer"-->
+<!--        ></v-app-bar-nav-icon>-->
+<!--      </template>-->
+<!--      <v-app-bar-title>Application Bar</v-app-bar-title>-->
 
-      <template v-slot:append>
-        <v-btn
-            icon="mdi-account"
-        ></v-btn>
-      </template>
-    </v-app-bar>
+<!--      <template v-slot:append>-->
+<!--        <v-btn-->
+<!--            icon="mdi-account"-->
+<!--        ></v-btn>-->
+<!--      </template>-->
+<!--    </v-app-bar>-->
 
-    <v-navigation-drawer
-        v-model="drawer"
-    >
-      <v-list>
-        <v-list-item link title="대시보드"></v-list-item>
-        <v-list-item link title="대시보드"></v-list-item>
-        <v-list-item link title="대시보드"></v-list-item>
-      </v-list>
+<!--    <v-navigation-drawer-->
+<!--        v-model="drawer"-->
+<!--    >-->
+<!--      <v-list>-->
+<!--        <v-list-item link title="대시보드"></v-list-item>-->
+<!--        <v-list-item link title="대시보드"></v-list-item>-->
+<!--        <v-list-item link title="대시보드"></v-list-item>-->
+<!--      </v-list>-->
+<!--    </v-navigation-drawer>-->
+
+<!--    <v-main class="bg-grey-lighten-3">-->
+<!--      <router-view></router-view>-->
+<!--    </v-main>-->
+<!--  </v-layout>-->
+
+  <v-app id="inspire">
+    <v-navigation-drawer v-model="drawer">
+      <!--  -->
     </v-navigation-drawer>
 
-    <v-main class="d-flex align-center justify-center" style="min-height: 300px;">
+    <v-app-bar>
+      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+
+      <v-app-bar-title>Application</v-app-bar-title>
+    </v-app-bar>
+
+    <v-main>
+      <!--  -->
       <router-view></router-view>
     </v-main>
-  </v-layout>
+  </v-app>
 
 </template>
 

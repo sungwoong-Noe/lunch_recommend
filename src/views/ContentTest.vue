@@ -4,7 +4,7 @@
 
 <template>
 
-  <v-container fluid class="fill-height">
+  <v-container fluid class="fill-height width_wide">
     test
 
   </v-container>
