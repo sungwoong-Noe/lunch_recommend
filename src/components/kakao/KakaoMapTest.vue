@@ -2,11 +2,6 @@
 import {KakaoMap, KakaoMapMarker, useKakao} from "vue3-kakao-maps";
 import {onMounted, ref} from "vue";
 
-
-
-
-// useKakao(import.meta.env.VITE_KAKAO_APP_KEY, ['services', 'clusterer', 'drawing']);
-
 const lat = ref<number>(33.450701);
 
 const lng = ref<number>(126.570667);
@@ -27,7 +22,6 @@ const onLoadKakaoMap = (mapRef: kakao.maps.Map) => {
 
   const ps = new kakao.maps.services.Places(map);
   ps.categorySearch('BK9', (data, stat, pagination) => console.log(data), {});
-
 };
 
 const message = ref<string>('');
@@ -56,15 +50,16 @@ const getInfo = () => {
     message.value += `지도 타입은 ${mapTypeId} 이고 <br> `;
     message.value += `지도의 남서쪽 좌표는 ${swLatLng.getLat()}, ${swLatLng.getLng()}이고 <br>`;
     message.value += `북동쪽 좌표는 ${neLatLng.getLat()}, ${neLatLng.getLng()}입니다`;
+
   }
 };
+
+
 
 
 </script>
 
 <template>
-
-
   <div>
     <KakaoMap :lat="lat" :lng="lng" @onLoadKakaoMap="onLoadKakaoMap">
       <KakaoMapMarker :lat="lat" :lng="lng" />
@@ -73,9 +68,6 @@ const getInfo = () => {
     <button @click="getInfo" class="demo-button">정보 얻기</button>
     <div v-html="message" />
   </div>
-
-
-
 </template>
 
 <style scoped>
