@@ -2,10 +2,22 @@
 
 import {useKakao} from "vue3-kakao-maps";
 import {ref} from "vue";
+import {useGeolocation} from "@vueuse/core";
 
 useKakao(import.meta.env.VITE_KAKAO_API_KEY,['services']);
 
 const drawer = ref(false);
+
+
+const options = {
+  enableHighAccuracy: true,
+  maximumAge: 30000,
+  timeout: 27000,
+};
+
+const {coords, locatedAt, error, resume, pause} = useGeolocation(options);
+console.log(coords.latitude)
+
 
 
 </script>
@@ -53,13 +65,14 @@ const drawer = ref(false);
 
     <v-app-bar>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
-
       <v-app-bar-title>Application</v-app-bar-title>
     </v-app-bar>
 
     <v-main>
       <!--  -->
       <router-view></router-view>
+
+
     </v-main>
   </v-app>
 
