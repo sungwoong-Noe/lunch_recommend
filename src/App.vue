@@ -6,19 +6,34 @@ import {useGeolocation} from "@vueuse/core";
 
 useKakao(import.meta.env.VITE_KAKAO_API_KEY,['services']);
 
+const {coords, locatedAt, error, resume, pause} = useGeolocation();
+
+const address = ref();
+
+const getCurrentAddress = () => {
+
+  const longitude = coords.value.longitude;
+  const latitude = coords.value.latitude;
+
+  console.log(coords)
+  console.log(coords.value.longitude, coords.value.latitude);
+
+  if (longitude == Infinity && latitude == Infinity) {
+    alert('현재 위치 정보를 찾을 수 없습니다.');
+  }
+
+  let geocoder = new kakao.maps.services.Geocoder();
+
+
+  geocoder.coord2Address(longitude, latitude, result => {
+    console.log(result);
+    address.value = result[0].road_address.address_name;
+  });
+}
+
+
+
 const drawer = ref(false);
-
-
-const options = {
-  enableHighAccuracy: true,
-  maximumAge: 30000,
-  timeout: 27000,
-};
-
-const {coords, locatedAt, error, resume, pause} = useGeolocation(options);
-console.log(coords.latitude)
-
-
 
 </script>
 
@@ -37,6 +52,11 @@ console.log(coords.latitude)
       <v-app-bar-title>Application Bar</v-app-bar-title>
 
       <template v-slot:append>
+        <v-btn
+            icon="mdi-near-me"
+            @click="getCurrentAddress"
+        ></v-btn>
+        {{ address }}
         <v-btn
             icon="mdi-account"
         ></v-btn>

@@ -1,13 +1,24 @@
 <script setup lang="ts">
+
 import {KakaoMap, KakaoMapMarker} from "vue3-kakao-maps";
-import {useWindowSize} from "@vueuse/core";
+import {useGeolocation, useWindowSize} from "@vueuse/core";
 import {computed, ref} from "vue";
 
 
+const options = {
+  enableHighAccuracy: true,
+  maximumAge: 30000,
+  timeout: 27000,
+};
+
+const {coords, locatedAt, error, resume, pause} = useGeolocation(options);
+
+
+console.log(coords.value.latitude)
 
 const coordinate = {
-  lat: 33.450701,
-  lng: 126.570667
+  lat: coords.value.latitude == Infinity ? 33.450701 : coords.value.latitude,
+  lng: coords.value.latitude == Infinity ? 126.570667 : coords.value.longitude
 }
 
 const {width, height}  = useWindowSize();
@@ -37,6 +48,7 @@ console.log(mapSize)
         :lat="coordinate.lat"
         :lng="coordinate.lng"
         :width="mapSize.width"
+        :height="mapSize.height"
         :draggable="true"
     >
       <KakaoMapMarker :lat="coordinate.lat" :lng="coordinate.lng" />
