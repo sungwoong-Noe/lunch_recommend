@@ -3,10 +3,12 @@
 import {useKakao} from "vue3-kakao-maps";
 import {ref} from "vue";
 import {useGeolocation} from "@vueuse/core";
+import ModalPop from "@/components/common/ModalPop.vue";
 
 useKakao(import.meta.env.VITE_KAKAO_API_KEY,['services']);
 
 const drawer = ref(false);
+let modalVisible = ref(true);
 
 
 const options = {
@@ -19,15 +21,18 @@ const {coords, locatedAt, error, resume, pause} = useGeolocation(options);
 console.log(coords.latitude)
 
 
+const modalBtn = () => {
+  modalVisible.value = !modalVisible.value;
+}
+
 
 </script>
 
 
 <template>
+
   <v-layout class="rounded rounded-md">
     <v-app-bar color="primary" prominent elevation="3">
-
-
       <template v-slot:prepend>
         <v-app-bar-nav-icon
             icon="mdi-menu"
@@ -63,7 +68,16 @@ console.log(coords.latitude)
 
     <v-main class="bg-grey-lighten-3">
       <router-view></router-view>
+      <v-btn @click="modalBtn">버튼</v-btn>
     </v-main>
+
+<!--    <Teleport to="#modal">-->
+      <ModalPop
+      >
+      </ModalPop>
+<!--    </Teleport>-->
+
   </v-layout>
+
 </template>
 
