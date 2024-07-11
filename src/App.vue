@@ -1,14 +1,17 @@
 <script setup lang="ts">
 
 import {useKakao} from "vue3-kakao-maps";
-import {ref} from "vue";
+import {ref, markRaw} from "vue";
 import {useGeolocation} from "@vueuse/core";
-import ModalPop from "@/components/common/ModalPop.vue";
+import ModalConfirm from "@/components/modal/ModalConfirm.vue";
+import { useModal } from "@/composable/useModal"
 
 useKakao(import.meta.env.VITE_KAKAO_API_KEY,['services']);
 
 const drawer = ref(false);
-let modalVisible = ref(true);
+let modalVisible = ref(false);
+
+const modal = useModal();
 
 
 const options = {
@@ -20,14 +23,21 @@ const options = {
 const {coords, locatedAt, error, resume, pause} = useGeolocation(options);
 console.log(coords.latitude)
 
-
 const modalBtn = () => {
-  modalVisible.value = !modalVisible.value;
+  console.log('modal button')
+  console.log(modal.show.value);
+  modal.component.value = markRaw(ModalConfirm)
+  modal.showModal();
+
+}
+
+const closeConfirm = () => {
+  modal.hideModal();
 }
 
 
-</script>
 
+</script>
 
 <template>
 
@@ -68,14 +78,19 @@ const modalBtn = () => {
 
     <v-main class="bg-grey-lighten-3">
       <router-view></router-view>
-      <v-btn @click="modalBtn">버튼</v-btn>
+        <v-btn @click="modalBtn">버튼</v-btn>
     </v-main>
 
-<!--    <Teleport to="#modal">-->
-      <ModalPop
-      >
-      </ModalPop>
-<!--    </Teleport>-->
+
+    <Teleport to="#modal">
+
+      <component
+          :is="modal.component.value"
+          v-if="modal.show.value"
+          @close="closeConfirm"
+      ></component>
+
+    </Teleport>
 
   </v-layout>
 
