@@ -8,8 +8,6 @@ import { useModal } from "@/composable/useModal"
 
 useKakao(import.meta.env.VITE_KAKAO_API_KEY,['services']);
 
-const {coords, locatedAt, error, resume, pause} = useGeolocation();
-
 const address = ref();
 
 const getCurrentAddress = () => {
@@ -29,7 +27,9 @@ const getCurrentAddress = () => {
 
   geocoder.coord2Address(longitude, latitude, result => {
     console.log(result);
-    address.value = result[0].road_address.address_name;
+
+
+    address.value = result[0].address.address_name;
   });
 }
 
