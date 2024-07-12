@@ -3,7 +3,9 @@
 import {KakaoMap, KakaoMapMarker} from "vue3-kakao-maps";
 import {useGeolocation, useWindowSize} from "@vueuse/core";
 import {computed, ref} from "vue";
+import {useUserCoordinatesStore} from "@/stores/userCoordinates";
 
+const userCoordinatesStore = useUserCoordinatesStore();
 
 const options = {
   enableHighAccuracy: true,
@@ -17,9 +19,11 @@ const {coords, locatedAt, error, resume, pause} = useGeolocation(options);
 console.log(coords.value.latitude)
 
 const coordinate = {
-  lat: coords.value.latitude == Infinity ? 33.450701 : coords.value.latitude,
-  lng: coords.value.latitude == Infinity ? 126.570667 : coords.value.longitude
+  lat: userCoordinatesStore.getCoordinates.latitude === 0 ? 36.35469518829576 : userCoordinatesStore.getCoordinates.latitude,
+  lng: userCoordinatesStore.getCoordinates.longitude === 0 ? 127.37869649890192 : userCoordinatesStore.getCoordinates.longitude,
 }
+
+console.log('dashboard', coordinate);
 
 const {width, height}  = useWindowSize();
 const rootFontSize = ref(parseFloat(getComputedStyle(document.documentElement).fontSize));
@@ -32,7 +36,8 @@ const mapSize = computed(() => {
   }
 })
 
-console.log(mapSize)
+
+
 
 </script>
 
@@ -51,7 +56,10 @@ console.log(mapSize)
         :height="mapSize.height"
         :draggable="true"
     >
-      <KakaoMapMarker :lat="coordinate.lat" :lng="coordinate.lng" />
+      <KakaoMapMarker
+          :lat="coordinate.lat"
+          :lng="coordinate.lng"
+      />
     </KakaoMap>
   </v-container>
 
