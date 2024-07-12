@@ -6,7 +6,6 @@ const component = ref();
 
 export function useModal() {
 
-
     return {
 
         component,

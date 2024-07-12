@@ -15,7 +15,6 @@ const options = {
 
 const {coords, locatedAt, error, resume, pause} = useGeolocation(options);
 
-
 console.log(coords.value.latitude)
 
 const coordinate = {

@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { useNavbar } from "@/composable/useNavbar";
-import {ref} from "vue";
+import {markRaw, ref} from "vue";
 import {useGeolocation} from "@vueuse/core";
 import {useUserCoordinatesStore} from "@/stores/userCoordinates";
+import {useModal} from "@/composable/useModal";
+import AddressSearch from "@/components/modal/AddressSearch.vue";
 
 const navbar = useNavbar();
 const address = ref();
@@ -39,6 +41,23 @@ const getCurrentAddress = () => {
   });
 };
 
+const addressSearchModal = useModal();
+
+
+
+
+const addressModalBtn = () => {
+
+  addressSearchModal.component.value = markRaw(AddressSearch)
+  addressSearchModal.showModal();
+
+  console.log(addressSearchModal.show.value);
+}
+
+const closeModal = () => {
+  addressSearchModal.hideModal();
+}
+
 </script>
 
 
@@ -55,7 +74,7 @@ const getCurrentAddress = () => {
     <template v-slot:append>
       <v-btn
           icon="mdi-near-me"
-          @click="getCurrentAddress"
+          @click="addressModalBtn"
       ></v-btn>
       {{ address }}
       <v-btn
@@ -63,6 +82,23 @@ const getCurrentAddress = () => {
       ></v-btn>
     </template>
   </v-app-bar>
+
+
+  <Teleport to="#modal">
+    <component
+        :is="addressSearchModal.component.value"
+        v-if="addressSearchModal.show.value"
+        @close="closeModal"
+    ></component>
+  </Teleport>
+
+
+<!--  <Teleport to="#modal">-->
+<!--    <component-->
+<!--        :is="addressSearchModal.component.value"-->
+<!--        @close="closeModal"-->
+<!--    ></component>-->
+<!--  </Teleport>-->
 </template>
 
 <style scoped>
