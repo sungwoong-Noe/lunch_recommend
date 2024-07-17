@@ -5,6 +5,7 @@ import {useGeolocation} from "@vueuse/core";
 import {useUserCoordinatesStore} from "@/stores/userCoordinates";
 import {useModal} from "@/composable/useModal";
 import AddressSearch from "@/components/modal/AddressSearch.vue";
+import {useUserInfo} from "@/stores/userInfo";
 
 const navbar = useNavbar();
 const address = ref();
@@ -12,6 +13,9 @@ const address = ref();
 const {coords, isSupported, resume} = useGeolocation();
 
 const userCoordinatesStore = useUserCoordinatesStore()
+const userInfo = useUserInfo();
+
+
 
 const getCurrentAddress = () => {
 
@@ -41,10 +45,9 @@ const getCurrentAddress = () => {
   });
 };
 
+
+
 const addressSearchModal = useModal();
-
-
-
 
 const addressModalBtn = () => {
 
@@ -76,7 +79,7 @@ const closeModal = () => {
           icon="mdi-near-me"
           @click="addressModalBtn"
       ></v-btn>
-      {{ address }}
+      {{ userInfo.address.address_name }}
       <v-btn
           icon="mdi-account"
       ></v-btn>

@@ -3,9 +3,9 @@
 import {KakaoMap, KakaoMapMarker} from "vue3-kakao-maps";
 import {useGeolocation, useWindowSize} from "@vueuse/core";
 import {computed, ref} from "vue";
-import {useUserCoordinatesStore} from "@/stores/userCoordinates";
+import {useUserInfo} from "@/stores/userInfo";
 
-const userCoordinatesStore = useUserCoordinatesStore();
+const userInfo = useUserInfo();
 
 const options = {
   enableHighAccuracy: true,
@@ -18,8 +18,10 @@ const {coords, locatedAt, error, resume, pause} = useGeolocation(options);
 console.log(coords.value.latitude)
 
 const coordinate = {
-  lat: userCoordinatesStore.getCoordinates.latitude === 0 ? 36.35469518829576 : userCoordinatesStore.getCoordinates.latitude,
-  lng: userCoordinatesStore.getCoordinates.longitude === 0 ? 127.37869649890192 : userCoordinatesStore.getCoordinates.longitude,
+  // lat: userCoordinatesStore.getCoordinates.latitude === 0 ? 36.35469518829576 : userCoordinatesStore.getCoordinates.latitude,
+  // lng: userCoordinatesStore.getCoordinates.longitude === 0 ? 127.37869649890192 : userCoordinatesStore.getCoordinates.longitude,
+  lat: !userInfo.address.y ? 36.35469518829576 : Number(userInfo.address.y),
+  lng: !userInfo.address.x ? 127.37869649890192 : Number(userInfo.address.x),
 }
 
 console.log('dashboard', coordinate);

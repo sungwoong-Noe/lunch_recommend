@@ -1,5 +1,12 @@
 <script setup lang="ts">
 
+
+const geocoder = new kakao.maps.services.Geocoder();
+
+
+
+
+
 </script>
 
 <template>

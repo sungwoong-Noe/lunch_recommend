@@ -32,7 +32,7 @@ useKakao(import.meta.env.VITE_KAKAO_API_KEY,['services']);
     <v-main class="bg-grey-lighten-3">
       <router-view></router-view>
     </v-main>
-
   </v-layout>
+
 </template>
 
