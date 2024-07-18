@@ -8,7 +8,7 @@ import {useMap} from "@/composable/useMap";
 
 const userInfo = useUserInfo();
 const placesResult = ref<kakao.maps.services.PlacesSearchResult[]>([]);
-const markerList = ref<KakaoMapMarkerListItemp[]>([])
+const markerList = ref<KakaoMapMarkerListItem[]>([]);
 
 const options = {
   enableHighAccuracy: true,
@@ -52,6 +52,7 @@ const placeSearchCB = (data: kaako.maps.services.PlacesSearchResult, status: kak
     console.log('res', data);
 
     const bounds = new kakao.maps.LatLngBounds();
+
     for (let marker of data) {
       const markerItem: KakaoMapMarkerListItem = {
         lat: marker.y,
@@ -100,7 +101,7 @@ const placeSearchCB = (data: kaako.maps.services.PlacesSearchResult, status: kak
           :lat="marker.lat"
           :lng="marker.lng"
           :infoWindow="marker.infoWindow"
-          :clickable="true"
+          :clickable="false"
       ></KakaoMapMarker>
 
     </KakaoMap>

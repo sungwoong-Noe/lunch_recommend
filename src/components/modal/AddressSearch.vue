@@ -24,7 +24,6 @@ const searchInput = ref('');
 // 카카오 주소 검색
 const search = () => {
   geocoder.addressSearch(searchInput.value, (res, status) => {
-
     if (status === 'OK') {
       state.addressList = res;
     }
@@ -37,7 +36,7 @@ const selectAddress = (addr: kakao.maps.services.Address) => {
 
   userInfo.setAddress(addr);
   useModal().hideModal();
-  useMap().setMarkerList(`${addr.address.region_3depth_name} 점심`);
+  useMap().setMarkerList(`${addr.address.region_1depth_name} ${addr.address.region_2depth_name} ${addr.address.region_3depth_name} 점심`);
 
 }
 

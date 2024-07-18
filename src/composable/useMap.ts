@@ -15,6 +15,8 @@ export function useMap() {
         getMap: (): kakao.maps.Map => {
             return map.value;
         },
+
+        // 카카오 키워드로 검색 기능
         setMarkerList(keyword: string) {
             const place = new kakao.maps.services.Places(map.value);
 
@@ -26,7 +28,11 @@ export function useMap() {
 
                     for (let marker of result) {
 
+                        console.log('marker', marker);
+
                         const markerItem: KakaoMapMarkerListItem = {
+
+                            id: marker.id,
                             lat: marker.y,
                             lng: marker.x,
                             infoWindow: {

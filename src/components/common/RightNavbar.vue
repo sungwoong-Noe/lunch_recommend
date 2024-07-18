@@ -4,8 +4,7 @@
 import {useMap} from "@/composable/useMap";
 
 const map = useMap();
-console.log('right', map)
-
+console.log('right', map);
 
 </script>
 
@@ -13,9 +12,10 @@ console.log('right', map)
 
   <v-navigation-drawer location="right">
     <v-list>
-      <v-list-item link title="대시보드"></v-list-item>
-      <v-list-item link title="대시보드"></v-list-item>
-      <v-list-item link title="대시보드"></v-list-item>
+      <v-list-item
+          v-for="marker in map.getMarkers()"
+          :key="marker"
+      >{{ marker.infoWindow.content }}</v-list-item>
     </v-list>
   </v-navigation-drawer>
 
