@@ -3,9 +3,12 @@
 import {useModal} from "@/composable/useModal";
 import {reactive, ref} from 'vue';
 import {useUserInfo} from "@/stores/userInfo";
+import {useMap} from "@/composable/useMap";
 
 const modal = useModal();
-let userInfo = useUserInfo();
+const userInfo = useUserInfo();
+const map = useMap();
+
 
 const geocoder = new kakao.maps.services.Geocoder();
 
@@ -20,24 +23,24 @@ const searchInput = ref('');
 
 // 카카오 주소 검색
 const search = () => {
-  geocoder.addressSearch(searchInput.value, (res, status, pagination) => {
+  geocoder.addressSearch(searchInput.value, (res, status) => {
 
     if (status === 'OK') {
       state.addressList = res;
     }
-    console.log('res', res);
-    console.log('res', status);
-    console.log('res', pagination);
   }, )
 }
 
 
 // 주소 선택
-const selectAddress = (addr: AddressDto) => {
+const selectAddress = (addr: kakao.maps.services.Address) => {
 
   userInfo.setAddress(addr);
   useModal().hideModal();
+  useMap().setMarkerList(`${addr.address.region_3depth_name} 점심`);
+
 }
+
 
 
 </script>

@@ -1,15 +1,10 @@
 <script setup lang="ts">
 
-import {useUserInfo} from "@/stores/userInfo";
 
-const userInfo = useUserInfo();
+import {useMap} from "@/composable/useMap";
 
-// const places = new kakao.maps.services.Places();
-//
-// places.keywordSearch("맛집", result =>{
-//   console.log('res', result);
-// })
-
+const map = useMap();
+console.log('right', map)
 
 
 </script>
