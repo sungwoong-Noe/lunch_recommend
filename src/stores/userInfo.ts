@@ -2,7 +2,7 @@ import {defineStore} from "pinia";
 
 
 interface UserInfo {
-    address: AddressDto
+    address: kakao.maps.services.Address
 }
 
 
@@ -23,13 +23,13 @@ export const useUserInfo = defineStore('userInfo', {
             main_address_no: null,
             sub_address_no: null,
             zip_code: null,
-            x: null,
-            y: null,
-        } as AddressDto
+            x: "127.37869649890192",
+            y: "36.35469518829576",
+        } as kakao.maps.services.Address
     }),
 
     actions: {
-        setAddress(address: AddressDto) {
+        setAddress(address: kakao.maps.services.Address) {
             this.address = address;
         },
     },

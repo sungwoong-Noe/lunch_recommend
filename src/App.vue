@@ -8,7 +8,6 @@ import HeaderBar from "@/components/common/HeaderBar.vue";
 useKakao(import.meta.env.VITE_KAKAO_API_KEY,['services']);
 
 
-
 </script>
 
 <template>

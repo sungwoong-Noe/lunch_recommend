@@ -54,7 +54,7 @@ const selectAddress = (addr: AddressDto) => {
         prepend-icon="mdi-map-marker"
         title="주소검색">
       <v-card-text>
-        <v-text-field v-model="searchInput"></v-text-field>
+        <v-text-field v-model="searchInput" autofocus></v-text-field>
         <v-list>
           <v-list-item
             v-for="address in state.addressList"

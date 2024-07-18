@@ -10,9 +10,8 @@ export function useModal() {
 
         component,
         show,
-
         showModal: (): void => show.value = true,
         hideModal: (): void => show.value = false
-
     }
 }
+

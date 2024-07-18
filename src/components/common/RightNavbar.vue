@@ -1,9 +1,14 @@
 <script setup lang="ts">
 
+import {useUserInfo} from "@/stores/userInfo";
 
-const geocoder = new kakao.maps.services.Geocoder();
+const userInfo = useUserInfo();
 
-
+// const places = new kakao.maps.services.Places();
+//
+// places.keywordSearch("맛집", result =>{
+//   console.log('res', result);
+// })
 
 
 
