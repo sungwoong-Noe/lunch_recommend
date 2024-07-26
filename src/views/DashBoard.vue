@@ -2,9 +2,11 @@
 
 import {KakaoMap, KakaoMapMarker, type KakaoMapMarkerListItem} from "vue3-kakao-maps";
 import {useGeolocation, useWindowSize} from "@vueuse/core";
-import {computed, reactive, ref} from "vue";
+import {computed, ref} from "vue";
 import {useUserInfo} from "@/stores/userInfo";
 import {useMap} from "@/composable/useMap";
+import UserRepository from "@/repository/UserRepository";
+import type HttpError from "@/http/HttpError";
 
 const userInfo = useUserInfo();
 const placesResult = ref<kakao.maps.services.PlacesSearchResult[]>([]);
@@ -18,7 +20,7 @@ const options = {
 
 const {coords, locatedAt, error, resume, pause} = useGeolocation(options);
 
-const {width, height}  = useWindowSize();
+const {width, height} = useWindowSize();
 const rootFontSize = ref(parseFloat(getComputedStyle(document.documentElement).fontSize));
 const map = ref<kakao.maps.Map>();
 
@@ -71,6 +73,16 @@ const placeSearchCB = (data: kaako.maps.services.PlacesSearchResult, status: kak
   }
 }
 
+const USER_REPOSITORY = new UserRepository();
+
+USER_REPOSITORY.login({
+  username: "swNoh",
+  password: "1234",
+}).then(res => {
+  alert();
+}).catch((e: HttpError) => {
+  alert(e.getMessage());
+});
 
 
 </script>
