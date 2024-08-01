@@ -1,4 +1,5 @@
 import '@mdi/font/css/materialdesignicons.css'
+import 'reflect-metadata'
 
 import {createApp} from 'vue'
 import {createPinia} from 'pinia'

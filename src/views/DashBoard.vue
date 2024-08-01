@@ -73,17 +73,6 @@ const placeSearchCB = (data: kaako.maps.services.PlacesSearchResult, status: kak
   }
 }
 
-const USER_REPOSITORY = new UserRepository();
-
-USER_REPOSITORY.login({
-  username: "swNoh",
-  password: "1234",
-}).then(res => {
-  alert();
-}).catch((e: HttpError) => {
-  alert(e.getMessage());
-});
-
 
 </script>
 

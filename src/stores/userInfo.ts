@@ -7,25 +7,25 @@ interface UserInfo {
 
 
 export const useUserInfo = defineStore('userInfo', {
-    state: () => ({
+    state: (): UserInfo => ({
         address: {
             /**
              * 전체 지번 주소
              */
-            address_name: null,
-            region_1depth_name: null,
-            region_2depth_name: null,
-            region_3depth_name: null,
-            region_3depth_h_name: null,
-            h_code: null,
-            b_code: null,
-            mountain_yn: null,
-            main_address_no: null,
-            sub_address_no: null,
-            zip_code: null,
+            address_name: "",
+            region_1depth_name: "",
+            region_2depth_name: "",
+            region_3depth_name: "",
+            region_3depth_h_name: "",
+            h_code: "",
+            b_code: "",
+            mountain_yn: "",
+            main_address_no: "",
+            sub_address_no: "",
+            zip_code: "",
             x: "127.37869649890192",
             y: "36.35469518829576",
-        } as kakao.maps.services.Address
+        }
     }),
 
     actions: {

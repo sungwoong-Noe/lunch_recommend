@@ -1,4 +1,7 @@
 import HttpRepository from "@/repository/HttpRepository";
+import {inject, singleton} from "tsyringe";
+
+
 
 
 interface Login {
@@ -6,12 +9,15 @@ interface Login {
     password: string;
 }
 
-export default class UserRepository extends HttpRepository {
 
+@singleton()
+export default class UserRepository {
+    constructor(@inject(HttpRepository) private readonly httpRepository: HttpRepository) {
+    }
     public login(request: Login) {
-        return this.post({
-            path: '/api/login',
-            body: request
+        return this.httpRepository.post({
+            path: "/api/login",
+            body: request,
         })
     }
 };

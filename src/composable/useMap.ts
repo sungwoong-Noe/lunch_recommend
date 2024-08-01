@@ -1,7 +1,9 @@
-import {ref} from 'vue'
+import {type Ref, ref} from 'vue'
 import type {KakaoMapMarkerListItem} from "vue3-kakao-maps";
 
-const map = ref<kakao.maps.Map>();
+
+
+const map: Ref<kakao.maps.Map | undefined> = ref<kakao.maps.Map>();
 const markerList = ref<KakaoMapMarkerListItem[]>([]);
 
 
@@ -12,12 +14,12 @@ export function useMap() {
         setMap: (mapRef: kakao.maps.Map): void  => {
             map.value = mapRef;
         },
-        getMap: (): kakao.maps.Map => {
+        getMap: (): kakao.maps.Map | undefined => {
             return map.value;
         },
 
         // 카카오 키워드로 검색 기능
-        setMarkerList(keyword: string) {
+        setMarkerList(keyword: string): void {
             const place = new kakao.maps.services.Places(map.value);
 
 
@@ -26,15 +28,14 @@ export function useMap() {
 
                     const bounds = new kakao.maps.LatLngBounds();
 
-                    for (let marker of result) {
+                    for (const marker of result) {
 
                         console.log('marker', marker);
 
                         const markerItem: KakaoMapMarkerListItem = {
 
-                            id: marker.id,
-                            lat: marker.y,
-                            lng: marker.x,
+                            lat: +marker.y,
+                            lng: +marker.x,
                             infoWindow: {
                                 content: marker.place_name,
                                 visible: false,

@@ -1,14 +1,16 @@
-import axios, {AxiosError, type AxiosInstance, AxiosRequestConfig} from "axios";
 import HttpError from "@/http/HttpError";
+import {singleton} from "tsyringe";
+import axios, {type AxiosError, type AxiosInstance} from 'axios';
+
 
 
 export type HttpRequestConfig = {
     path: string;
-    method: "GET" | "POST" | "PATCH" | "DELETE";
+    method?: "GET" | "POST" | "PATCH" | "DELETE";
     params?: any;
     body?: any;
 }
-
+@singleton()
 export default class AxiosHttpClient{
 
     private  readonly client: AxiosInstance = axios.create({
@@ -22,8 +24,8 @@ export default class AxiosHttpClient{
                 method: config.method,
                 url: config.path,
                 params: config.params,
-                body: config.body
-            }).catch((e: AxiosError) => {
+                data: config.body
+            }).catch((e: AxiosError     ) => {
                 return Promise.reject(new HttpError(e));
             });
     }
