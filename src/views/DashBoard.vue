@@ -48,7 +48,7 @@ const onLoadKakaoMap = (mapRef: kakao.maps.Map) => {
 }
 
 
-const placeSearchCB = (data: kaako.maps.services.PlacesSearchResult, status: kakao.maps.services.Status): void => {
+const placeSearchCB = (data: kakao.maps.services.PlacesSearchResult, status: kakao.maps.services.Status): void => {
   if (status === kakao.maps.services.Status.OK) {
 
     console.log('res', data);
@@ -57,8 +57,8 @@ const placeSearchCB = (data: kaako.maps.services.PlacesSearchResult, status: kak
 
     for (let marker of data) {
       const markerItem: KakaoMapMarkerListItem = {
-        lat: marker.y,
-        lng: marker.x,
+        lat: +marker.y,
+        lng: +marker.x,
         infoWindow: {
           content: marker.place_name,
           visible: false
