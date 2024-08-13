@@ -5,8 +5,6 @@ import {useGeolocation, useWindowSize} from "@vueuse/core";
 import {computed, ref} from "vue";
 import {useUserInfo} from "@/stores/userInfo";
 import {useMap} from "@/composable/useMap";
-import UserRepository from "@/repository/UserRepository";
-import type HttpError from "@/http/HttpError";
 
 const userInfo = useUserInfo();
 const placesResult = ref<kakao.maps.services.PlacesSearchResult[]>([]);

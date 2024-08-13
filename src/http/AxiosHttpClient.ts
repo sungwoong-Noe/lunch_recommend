@@ -25,16 +25,8 @@ export default class AxiosHttpClient{
                 url: config.path,
                 params: config.params,
                 data: config.body
-            }).catch((e: AxiosError     ) => {
+            }).catch((e: AxiosError) => {
                 return Promise.reject(new HttpError(e));
             });
-    }
-
-    public async get(config: HttpRequestConfig) {
-        return this.request({...config, method: "GET"})
-    }
-
-    public async post(config: HttpRequestConfig) {
-        return this.request({...config, method: "POST"})
     }
 }

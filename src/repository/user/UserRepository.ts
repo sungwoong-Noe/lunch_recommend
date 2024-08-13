@@ -20,4 +20,4 @@ export default class UserRepository {
             body: request,
         })
     }
-};
+}
