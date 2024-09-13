@@ -4,14 +4,14 @@ import {useRoute} from "vue-router";
 
 const route = useRoute();
 
-console.log(route);
+console.log(route.matched);
 
 
 </script>
 
 <template>
   <v-breadcrumbs
-    :items="['Foo', 'Bar', 'Fizz']"
+    :items="route.matched.filter(r => r.meta.title).map(r => r.meta?.title)"
   >
   </v-breadcrumbs>
 

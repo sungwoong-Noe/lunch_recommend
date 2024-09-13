@@ -13,18 +13,19 @@ const routes:Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'dashboard',
+    meta: {title: '대시보드'},
     component: DashBoard
   },
   {
     path: '/article',
-    name: 'articles',
+    name: 'article-list',
     meta: {title: '게시글'},
     children: [
       {path: '', component: ArticlePage},
       {
         path: 'detail',
         name: 'article-detail',
-        meta: {title: '게시글 테스트'},
+        meta: {title: '상세'},
         component: ArticleDetail
       }
     ]
