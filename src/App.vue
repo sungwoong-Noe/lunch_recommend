@@ -8,7 +8,6 @@ import BreadCrumbs from "@/components/common/BreadCrumbs.vue";
 
 useKakao(import.meta.env.VITE_KAKAO_API_KEY,['services']);
 
-
 </script>
 
 <template>
@@ -34,6 +33,7 @@ useKakao(import.meta.env.VITE_KAKAO_API_KEY,['services']);
       <router-view></router-view>
 
     </v-main>
+
   </v-layout>
 
 </template>
