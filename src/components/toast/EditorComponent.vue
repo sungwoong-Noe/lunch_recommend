@@ -3,7 +3,6 @@ import '@toast-ui/editor/dist/toastui-editor.css'
 import Editor from '@toast-ui/editor';
 import {onMounted, type PropType, type Ref, ref} from "vue";
 import {EditorOptions} from "@toast-ui/editor/types/editor";
-import type {ToolbarItemOptions} from "@toast-ui/editor/types/ui";
 
 
 const toolbarItems: string[][] =  [
@@ -17,7 +16,7 @@ const toolbarItems: string[][] =  [
 const props = defineProps({
   height: {
     type: String,
-    default: '1000px',
+    default: '700px',
     required: false,
   },
   toolbar: {

@@ -3,6 +3,7 @@ import type {RouteRecordRaw} from 'vue-router';
 import DashBoard from "@/views/DashBoard.vue";
 import ArticlePage from "@/views/article/ArticlePage.vue";
 import ArticleDetail from "@/views/article/ArticleDetail.vue";
+import ArticleUpsert from "@/views/article/ArticleUpsert.vue";
 
 
 export const DASH_BOARD_PAGE = 'dashboard';
@@ -27,6 +28,14 @@ const routes:Array<RouteRecordRaw> = [
         name: 'article-detail',
         meta: {title: '상세'},
         component: ArticleDetail
+      },
+      {
+        path: 'create',
+        name: 'article-create',
+        meta: {
+          title: '등록'
+        },
+        component: ArticleUpsert,
       }
     ]
   }
