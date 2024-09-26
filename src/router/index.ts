@@ -20,7 +20,7 @@ const routes:Array<RouteRecordRaw> = [
   {
     path: '/article',
     name: 'article-list',
-    meta: {title: '게시글'},
+    meta: {title: 'Article'},
     children: [
       {path: '', component: ArticlePage},
       {

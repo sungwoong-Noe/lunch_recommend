@@ -12,6 +12,7 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@tanstack/vue-query": "^5.56.2",
     "@toast-ui/editor": "^3.2.2",
     "@vueuse/core": "^11.0.3",
     "axios": "^1.7.7",

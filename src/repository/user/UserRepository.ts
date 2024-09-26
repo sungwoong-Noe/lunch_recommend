@@ -1,9 +1,6 @@
 import HttpRepository from "@/repository/HttpRepository";
 import {inject, singleton} from "tsyringe";
 
-
-
-
 interface Login {
     username: string;
     password: string;

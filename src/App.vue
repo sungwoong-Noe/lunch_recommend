@@ -26,7 +26,7 @@ useKakao(import.meta.env.VITE_KAKAO_API_KEY,['services']);
 
 
     <!-- Main Content -->
-    <v-main class="bg-grey-lighten-3">
+    <v-main>
 
       <BreadCrumbs />
 

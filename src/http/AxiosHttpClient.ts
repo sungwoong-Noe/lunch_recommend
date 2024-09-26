@@ -10,13 +10,14 @@ export type HttpRequestConfig = {
     params?: any;
     body?: any;
 }
+
 @singleton()
 export default class AxiosHttpClient{
 
-    private  readonly client: AxiosInstance = axios.create({
+    private readonly client: AxiosInstance = axios.create({
         timeout: 3000,
         timeoutErrorMessage: "힝..."
-    })
+    });
 
     public async request(config: HttpRequestConfig) {
         return this.client
