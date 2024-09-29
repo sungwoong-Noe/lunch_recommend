@@ -1,30 +1,50 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import {createRouter, createWebHistory} from 'vue-router'
+import type {RouteRecordRaw} from 'vue-router';
 import DashBoard from "@/views/DashBoard.vue";
-import ContentTest from "@/views/ContentTest.vue";
+import ArticlePage from "@/views/article/ArticlePage.vue";
+import ArticleDetail from "@/views/article/ArticleDetail.vue";
+import ArticleUpsert from "@/views/article/ArticleInsert.vue";
+
+
+export const DASH_BOARD_PAGE = 'dashboard';
+export const ARTICLE_LIST_PAGE = 'article-list';
+
+
+const routes:Array<RouteRecordRaw> = [
+  {
+    path: '/',
+    name: 'dashboard',
+    meta: {title: '대시보드'},
+    component: DashBoard
+  },
+  {
+    path: '/article',
+    name: 'article-list',
+    meta: {title: 'Article'},
+    children: [
+      {path: '', component: ArticlePage},
+      {
+        path: 'detail',
+        name: 'article-detail',
+        meta: {title: '상세'},
+        component: ArticleDetail
+      },
+      {
+        path: 'create',
+        name: 'article-create',
+        meta: {
+          title: '등록'
+        },
+        component: ArticleUpsert,
+      }
+    ]
+  }
+]
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: DashBoard
-    },
-    {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue')
-    },
-    {
-      path: '/test',
-      name: 'contentTest',
-      component: ContentTest
-
-    }
-  ]
+  routes: routes,
 })
 
 export default router

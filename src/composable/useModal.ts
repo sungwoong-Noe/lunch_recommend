@@ -1,19 +1,17 @@
-import {ref} from 'vue';
+import {type Ref, ref} from 'vue';
 
-const show = ref(false);
+const show: Ref<boolean> = ref(false);
 
 const component = ref();
 
 export function useModal() {
 
-
     return {
 
         component,
         show,
-
-        showModal: (): void => show.value = true,
-        hideModal: (): void => show.value = false
-
+        showModal: (): void  => {show.value = true},
+        hideModal: (): void => {show.value = false}
     }
 }
+
