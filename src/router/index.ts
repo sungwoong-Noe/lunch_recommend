@@ -3,7 +3,7 @@ import type {RouteRecordRaw} from 'vue-router';
 import DashBoard from "@/views/DashBoard.vue";
 import ArticlePage from "@/views/article/ArticlePage.vue";
 import ArticleDetail from "@/views/article/ArticleDetail.vue";
-import ArticleUpsert from "@/views/article/ArticleUpsert.vue";
+import ArticleUpsert from "@/views/article/ArticleInsert.vue";
 
 
 export const DASH_BOARD_PAGE = 'dashboard';

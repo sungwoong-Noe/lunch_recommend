@@ -4,10 +4,13 @@
       <v-col :cols="12">
         <v-sheet>
           <ArticleForm
-          v-model:data="formData">
-
+            v-model:form-data="formData"
+          >
           </ArticleForm>
-
+          <v-sheet class="d-flex mb-6 justify-end">
+            <v-btn class="ma-1 my-2">취소</v-btn>
+            <v-btn class="ma-1 my-2" color="primary" @click="createArticle">등록</v-btn>
+          </v-sheet>
         </v-sheet>
       </v-col>
     </v-row>
@@ -17,11 +20,11 @@
 <script setup lang="ts">
 
 import '@toast-ui/editor/dist/toastui-editor.css'
-import {onMounted, reactive, type Ref, ref} from 'vue';
-import {useMutation, useQuery} from "@tanstack/vue-query";
+import {reactive, type Ref, ref} from 'vue';
+import {useMutation} from "@tanstack/vue-query";
 import ArticleRepository, {type Article} from "@/repository/article/ArticleRepository";
 import {container} from "tsyringe";
-import ArticleForm from "@/views/article/ArticleForm.vue";
+import ArticleForm from "@/views/article/form/ArticleForm.vue";
 
 
 interface Tag {
@@ -36,26 +39,9 @@ const formData = reactive<Article>(
     {
       idx: null,
       title: '',
-      content: ''
+      content: 'test'
     }
 );
-
-function enterTag() {
-
-  if(!tags[tagField.value]){
-    tags[tagField.value] = true;
-  }
-
-
-  tagField.value = '';
-}
-
-function removeTag(tag: string) {
-  delete tags[tag];
-  console.log('remove', tag, tags)
-}
-
-
 
 const articleRepository = container.resolve(ArticleRepository);
 
@@ -70,7 +56,11 @@ const {isPending, isError, error, isSuccess, mutate} = useMutation({
   },
 });
 
+function createArticle() {
 
+  console.log('form', formData);
+
+}
 
 
 </script>

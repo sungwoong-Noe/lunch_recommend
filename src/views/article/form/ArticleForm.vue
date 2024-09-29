@@ -2,7 +2,14 @@
 
   <v-form>
     <v-sheet class="pt-1">
-      <v-text-field color="primary" class="ma-5 text-lg-h4" hide-details="auto" label="Title" variant="underlined"></v-text-field>
+      <v-text-field
+          color="primary"
+          class="ma-5 text-lg-h4"
+          hide-details="auto"
+          label="Title"
+          variant="underlined"
+          v-model="data.title"
+      ></v-text-field>
     </v-sheet>
     <v-sheet>
       <v-text-field>
@@ -29,11 +36,6 @@
 
     <div ref="editorDiv"></div>
 
-
-    <v-sheet class="d-flex mb-6 justify-end">
-      <v-btn class="ma-1 my-2">취소</v-btn>
-      <v-btn class="ma-1 my-2" color="primary" @click="createArticle">등록</v-btn>
-    </v-sheet>
   </v-form>
 
 </template>
@@ -41,9 +43,11 @@
 <script setup lang="ts">
 
 import {ref, onMounted} from 'vue';
-import articleForm from "@/views/article/ArticleForm.vue";
 import {Editor, type EditorOptions} from "@toast-ui/editor";
+import type {Article} from "@/repository/article/ArticleRepository";
 
+
+const data = defineModel<Article>('formData');
 /**
  * Toast Editor 설정
  */
@@ -64,25 +68,29 @@ const editorDefaultOption = {
 onMounted(() => {
   // if (!editorDiv.value) {
 
+  console.log('data', data);
+
   const editorOption: EditorOptions = {
     el: editorDiv.value,
     toolbarItems: editorDefaultOption.toolbar,
     height: editorDefaultOption.height,
     initialEditType: 'markdown',
-    initialValue: articleForm.content,
-    // events: {
-    //   change: () => articleForm.content = editorDiv.value?.getMarkdown(),
-    // }
+    initialValue: data.value.content,
+
+    events: {
+      change: () => {
+        data.value.content = editor.value?.getMarkdown();
+        console.log('content', editor.value?.getMarkdown())
+      }
+    }
   }
 
   editor.value = new Editor(editorOption)
 
-  // }
 });
 
-function createArticle() {
 
-}
+
 
 
 </script>
