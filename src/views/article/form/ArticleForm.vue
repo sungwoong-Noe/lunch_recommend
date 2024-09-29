@@ -12,7 +12,11 @@
       ></v-text-field>
     </v-sheet>
     <v-sheet>
-      <v-text-field>
+      <v-text-field
+          label="Tags"
+          class="ma-5 text-lg-h4"
+          variant="underlined"
+      >
 <!--          class="ma-5"-->
 <!--          hide-details="auto"-->
 <!--          :placeholder="'Tag'"-->
@@ -78,10 +82,7 @@ onMounted(() => {
     initialValue: data.value.content,
 
     events: {
-      change: () => {
-        data.value.content = editor.value?.getMarkdown();
-        console.log('content', editor.value?.getMarkdown())
-      }
+      change: () => data.value.content = editor.value?.getMarkdown()
     }
   }
 

@@ -49,6 +49,7 @@ const articleRepository = container.resolve(ArticleRepository);
 const {isPending, isError, error, isSuccess, mutate} = useMutation({
   mutationFn: (req: Article) => articleRepository.create(req),
   onSuccess(data, variables, context) {
+
     console.log('success', data);
   },
   onError(error, variables, context) {
@@ -57,9 +58,8 @@ const {isPending, isError, error, isSuccess, mutate} = useMutation({
 });
 
 function createArticle() {
-
+  mutate(formData);
   console.log('form', formData);
-
 }
 
 
