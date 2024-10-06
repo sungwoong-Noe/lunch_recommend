@@ -12,7 +12,7 @@
       </v-col>
       <v-col :cols="10">
         <v-list
-            :items="items"
+            :items="data"
             lines="three"
             item-props
         >
@@ -27,6 +27,11 @@
 </template>
 
 <script setup lang="ts">
+import {useQuery} from "@tanstack/vue-query";
+import {container} from "tsyringe";
+import ArticleRepository from "@/repository/article/ArticleRepository";
+import {DOMAIN_ARTICLE, METHOD_LIST} from "@/router";
+
 const items = [
   {type: 'subheader', title: 'Today'},
   {
@@ -59,6 +64,15 @@ const items = [
     subtitle: '<span class="text-primary">Britta Holt</span> &mdash; We should eat this: Grate, Squash, Corn, and tomatillo Tacos.',
   },
 ];
+
+const articleRepository = container.resolve(ArticleRepository);
+
+const {data, isLoading, isError} = useQuery({
+  queryKey: [DOMAIN_ARTICLE, METHOD_LIST],
+  queryFn: () => articleRepository.fetchList(),
+  select: ({data}) => data.content,
+});
+
 
 </script>
 

@@ -29,7 +29,7 @@ export default class ArticleRepository {
 
     public fetchList() {
         return this.httpRepository.get({
-            path: `${import.meta.env.VITE_ARTICLE_API}/articles`
+            path: `${import.meta.env.VITE_ARTICLE_API}/article`
         })
     }
 

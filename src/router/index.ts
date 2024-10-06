@@ -7,7 +7,10 @@ import ArticleUpsert from "@/views/article/ArticleInsert.vue";
 
 
 export const DASH_BOARD_PAGE = 'dashboard';
-export const ARTICLE_LIST_PAGE = 'article-list';
+export const DOMAIN_ARTICLE = 'article';
+export const METHOD_LIST = 'list';
+export const METHOD_CREATE = 'create';
+export const METHOD_DETAIL = 'detail';
 
 
 const routes:Array<RouteRecordRaw> = [
@@ -18,20 +21,20 @@ const routes:Array<RouteRecordRaw> = [
     component: DashBoard
   },
   {
-    path: '/article',
-    name: 'article-list',
+    path: `/${DOMAIN_ARTICLE}`,
+    name: `${DOMAIN_ARTICLE}-${METHOD_LIST}`,
     meta: {title: 'Article'},
     children: [
       {path: '', component: ArticlePage},
       {
-        path: 'detail',
-        name: 'article-detail',
+        path: METHOD_DETAIL,
+        name: `${DOMAIN_ARTICLE}-${METHOD_DETAIL}`,
         meta: {title: '상세'},
         component: ArticleDetail
       },
       {
-        path: 'create',
-        name: 'article-create',
+        path: METHOD_CREATE,
+        name: `${DOMAIN_ARTICLE}-${METHOD_CREATE}`,
         meta: {
           title: '등록'
         },

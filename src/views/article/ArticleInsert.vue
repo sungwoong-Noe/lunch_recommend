@@ -1,5 +1,11 @@
 <template>
   <v-container>
+    <v-alert
+        v-if="isError"
+        :title="error?.message"
+        :type="'error'"
+    ></v-alert>
+
     <v-row>
       <v-col :cols="12">
         <v-sheet>
@@ -49,6 +55,7 @@ const articleRepository = container.resolve(ArticleRepository);
 const {isPending, isError, error, isSuccess, mutate} = useMutation({
   mutationFn: (req: Article) => articleRepository.create(req),
   onSuccess(data, variables, context) {
+
 
     console.log('success', data);
   },
